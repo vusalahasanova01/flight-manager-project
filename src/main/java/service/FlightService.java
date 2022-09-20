@@ -2,6 +2,8 @@ package service;
 
 import dao.FlightDao;
 import exception.CheckFlightException;
+import model.Airline;
+import model.Airport;
 import model.Flight;
 
 
@@ -24,6 +26,12 @@ public class FlightService {
         } else {
             throw new CheckFlightException();
         }
+    }
+    public  boolean addFlight(Airport whereFrom, Airport whereto, Airline airline
+            ,LocalDateTime timeForBegin,LocalDateTime timeForFinish,int freeSeats){
+        Flight addedFlight = new Flight(whereFrom,whereto,airline,timeForBegin,timeForFinish,freeSeats);
+       return flightDao.addData(addedFlight.getId(),addedFlight);
+
     }
  public List<Flight> getTimeTableFLights(){
     return  getAll().

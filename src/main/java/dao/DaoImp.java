@@ -21,8 +21,7 @@ public class DaoImp <T>  {
     }
 
     public <B> boolean saveData(List<B> list,String fileName) {
-        try(ObjectOutputStream o = new ObjectOutputStream(new ObjectOutputStream
-                (new FileOutputStream(new File(fileName))))) {
+        try(ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File(fileName)))) {
             o.writeObject(list);
 //            System.out.println(list);
 //            System.out.println(fileName);
