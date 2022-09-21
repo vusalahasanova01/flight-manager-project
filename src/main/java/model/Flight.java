@@ -4,28 +4,34 @@ import util.Id;
 
 import java.awt.*;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Objects;
 
-public class Flight  implements Serializable {
-    private  int id;
+public class Flight implements Serializable {
+    private int id;
     private Airport whereFrom;
     private Airport whereTo;
     private Airline airline;
     private LocalDateTime timeForBegin;
     private LocalDateTime timeForFinish;
+    //  private LocalDateTime timeForBegin;
+    //  private LocalDateTime timeForFinish;
     private int freeSeats;
 
     public Flight
-            ( Airport whereFrom, Airport whereTo, Airline airline, LocalDateTime timeForBegin,
-             LocalDateTime timeForFinish, int freeSeats) {
+            (Airport whereFrom, Airport whereTo, Airline airline, String timeForBegin,
+             String timeForFinish, int freeSeats) {
         this.id = Id.getId(DBEnum.FLIGHT_ID).orElseThrow();
         this.whereFrom = whereFrom;
         this.whereTo = whereTo;
         this.airline = airline;
-        this.timeForBegin = timeForBegin;
-        this.timeForFinish = timeForFinish;
+        setTimeForBegin(timeForBegin);
+        setTimeForFinish(timeForFinish);
         this.freeSeats = freeSeats;
     }
 
@@ -65,17 +71,21 @@ public class Flight  implements Serializable {
         return timeForBegin;
     }
 
-    public void setTimeForBegin(LocalDateTime timeForBegin) {
-        this.timeForBegin = timeForBegin;
+    private LocalDateTime setTimeForFlight(String timeForFlight) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
+        return  LocalDateTime.parse(timeForFlight, formatter);
+    }
+    public void setTimeForBegin(String  timeForBegin){
+        this.timeForBegin = setTimeForFlight(timeForBegin);
+    }
+    public void setTimeForFinish(String timeForFinish){
+       this.timeForFinish = setTimeForFlight(timeForFinish);
     }
 
     public LocalDateTime getTimeForFinish() {
         return timeForFinish;
     }
 
-    public void setTimeForFinish(LocalDateTime timeForFinish) {
-        this.timeForFinish = timeForFinish;
-    }
 
     public int getFreeSeats() {
         return freeSeats;

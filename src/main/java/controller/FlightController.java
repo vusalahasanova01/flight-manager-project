@@ -30,7 +30,7 @@ public class FlightController {
     }
 
     public boolean addFlight(Airport whereFrom, Airport whereto, Airline airline
-            , LocalDateTime timeForBegin, LocalDateTime timeForFinish, int freeSeats) {
+            , String timeForBegin, String timeForFinish, int freeSeats) {
         return flightService.addFlight(whereFrom, whereto, airline, timeForBegin, timeForFinish, freeSeats);
     }
 }

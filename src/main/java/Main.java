@@ -13,7 +13,7 @@ public class Main {
        System.out.println(new BookingController().getAll());
        System.out.println(new FlightController().getAll());
        FlightController flightController = new FlightController();
-       
+
        */
        //flightController.addFlight(Airport.ISTANBUL,Airport.BAKU, Airline.AZAL,)
         BookingManager.start();

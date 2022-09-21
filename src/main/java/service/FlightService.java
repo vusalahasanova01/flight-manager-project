@@ -19,16 +19,17 @@ public class FlightService {
         return flightDao.getAll();
     }
 
-    public Optional<Flight> getById(int index) {
+    public Optional<Flight> getById(int index)  {
         Optional<Flight> flight = flightDao.getById(index);
         if (flight.isPresent()) {
             return flight;
         } else {
             throw new CheckFlightException();
         }
+
     }
     public  boolean addFlight(Airport whereFrom, Airport whereto, Airline airline
-            ,LocalDateTime timeForBegin,LocalDateTime timeForFinish,int freeSeats){
+            ,String timeForBegin,String timeForFinish,int freeSeats){
         Flight addedFlight = new Flight(whereFrom,whereto,airline,timeForBegin,timeForFinish,freeSeats);
        return flightDao.addData(addedFlight.getId(),addedFlight);
 
