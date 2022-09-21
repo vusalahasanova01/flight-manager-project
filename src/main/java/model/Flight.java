@@ -72,7 +72,7 @@ public class Flight implements Serializable {
     }
 
     private LocalDateTime setTimeForFlight(String timeForFlight) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
         return  LocalDateTime.parse(timeForFlight, formatter);
     }
     public void setTimeForBegin(String  timeForBegin){
