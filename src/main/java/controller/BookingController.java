@@ -1,6 +1,7 @@
 package controller;
 
 import model.Booking;
+import model.Passenger;
 import service.BookingService;
 
 import java.util.List;
@@ -22,5 +23,8 @@ public class BookingController {
     }
     public List <Booking> getUserBooking(int id){
         return bookingService.getUserBooking(id);
+    }
+    public boolean addTicket(Passenger passenger, int selectedFlightId){
+        return bookingService.addTicket(passenger,selectedFlightId);
     }
 }

@@ -15,8 +15,8 @@ public class Main {
        FlightController flightController = new FlightController();
 
 
-       flightController.addFlight(Airport.ISTANBUL,Airport.BAKU, Airline.AZAL,"2022-12-10 11:50",
-               "2022-12-11 02:50",30);
+       flightController.addFlight(Airport.ISTANBUL,Airport.BAKU, Airline.AZAL,"2022-09-23 02:06",
+               "2022-09-23 10:06",30);
         BookingManager.start();
     }
 }

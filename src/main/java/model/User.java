@@ -65,17 +65,16 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(password, user.password);
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(surname, user.surname) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, id, password);
+        return Objects.hash(name, surname, id, username, password);
     }
 
     @Override
     public String toString() {
-        return "User{name='%s', surname='%s', id=%d, password='%s'}"
-                .formatted(name, surname, id, password);
+        return "User{name='%s', surname='%s', id=%d, username='%s', password='%s'}".formatted(name, surname, id, username, password);
     }
 }

@@ -6,6 +6,7 @@ import model.Booking;
 import model.Flight;
 import service.FlightService;
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -32,5 +33,9 @@ public class FlightController {
     public boolean addFlight(Airport whereFrom, Airport whereto, Airline airline
             , String timeForBegin, String timeForFinish, int freeSeats) {
         return flightService.addFlight(whereFrom, whereto, airline, timeForBegin, timeForFinish, freeSeats);
+    }
+    public List<Flight> searchFlightByInform(String startLoc, String city,
+                                             String flightDate, int numberOfTicket)  {
+        return flightService.searchFlightByInform( startLoc, city,flightDate, numberOfTicket);
     }
 }

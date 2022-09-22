@@ -1,6 +1,7 @@
 package util;
 
 import command.Register;
+import model.Airport;
 import ui.Menu;
 
 import java.util.InputMismatchException;

@@ -1,8 +1,12 @@
 package service;
 
+import controller.FlightController;
 import dao.BookingDao;
+import dao.FlightDao;
 import exception.CheckFlightException;
 import model.Booking;
+import model.Flight;
+import model.Passenger;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +14,8 @@ import java.util.stream.Collectors;
 
 public class BookingService {
     BookingDao bookingDao = new BookingDao();
+    FlightDao flightDao =new FlightDao();
+   // FlightController flightController = new FlightController();
     public List <Booking>  getAll() {
        return bookingDao.getAll();
     }
@@ -29,6 +35,18 @@ public class BookingService {
     }
     public List <Booking> getUserBooking(int id){
         return bookingDao.getAll()
-                .stream().filter(b -> b.getUser().getId()==id).collect(Collectors.toList());
+                .stream().filter(b -> b.getUserId()==id)
+                .collect(Collectors.toList());
+    }
+    public boolean addTicket(Passenger passenger, int selectedFlightId){
+        Booking newBooking = new Booking(passenger,selectedFlightId);
+        Flight flight = flightDao.getById(selectedFlightId).orElse(null);
+        if (flight == null){
+            return false;
+        }
+        flight.decrementFreeSeats();
+        int index = flightDao.getAll().indexOf(flight);
+        flightDao.uptadeData(index,flight);
+        return bookingDao.addData(newBooking.getId(),newBooking);
     }
 }

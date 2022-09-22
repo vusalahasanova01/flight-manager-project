@@ -1,23 +1,22 @@
 package model;
-
+import bookingManage.BookingManager;
 import util.Id;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Booking implements Serializable {
     private  int id;
-    private User user;
+    private int userId;
     private Passenger passenger;
-    private Flight selectedFlight;
-    private int selectedSeat;
+    private int selectedFlightId;
 
-    public Booking( User user, Passenger passenger, Flight selectedFlight, int selectedSeat) {
+
+    public Booking(Passenger passenger, int selectedFlightId) {
         this.id = Id.getId(DBEnum.BOOKING_ID).orElseThrow();
-        this.user = user;
+        this.userId = BookingManager.getLogged();
         this.passenger = passenger;
-        this.selectedFlight = selectedFlight;
-        this.selectedSeat = selectedSeat;
+        this.selectedFlightId = selectedFlightId;
+
     }
 
     public int getId() {
@@ -28,12 +27,20 @@ public class Booking implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getSelectedFlightId() {
+        return selectedFlightId;
+    }
+
+    public void setSelectedFlightId(int selectedFlightId) {
+        this.selectedFlightId = selectedFlightId;
     }
 
     public Passenger getPassenger() {
@@ -44,38 +51,21 @@ public class Booking implements Serializable {
         this.passenger = passenger;
     }
 
-    public Flight getSelectedFlight() {
-        return selectedFlight;
-    }
-
-    public void setSelectedFlight(Flight selectedFlight) {
-        this.selectedFlight = selectedFlight;
-    }
-
-    public int getSelectedSeat() {
-        return selectedSeat;
-    }
-
-    public void setSelectedSeat(int selectedSeat) {
-        this.selectedSeat = selectedSeat;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return id == booking.id && selectedSeat == booking.selectedSeat && Objects.equals(user, booking.user) && Objects.equals(passenger, booking.passenger) && Objects.equals(selectedFlight, booking.selectedFlight);
+        return id == booking.id && userId == booking.userId && selectedFlightId == booking.selectedFlightId  && Objects.equals(passenger, booking.passenger);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, passenger, selectedFlight, selectedSeat);
+        return Objects.hash(id, userId, passenger, selectedFlightId);
     }
 
     @Override
     public String toString() {
-        return "Booking{id=%d, user=%s, passenger=%s, selectedFlight=%s, selectedSeat=%d}"
-                .formatted(id, user, passenger, selectedFlight, selectedSeat);
+        return "Booking{id=%d, userId=%d, passenger=%s, selectedFlightId=%d}".formatted(id, userId, passenger, selectedFlightId);
     }
 }

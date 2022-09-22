@@ -12,10 +12,8 @@ public class DaoImp <T>  {
         try(ObjectInputStream o = new ObjectInputStream(new FileInputStream(fileName))) {
             return (List <T>) o.readObject();
         } catch (IOException e) {
-//            System.out.println("IOE catche girdi");
             return new ArrayList<>();
         } catch (ClassNotFoundException ex){
-//            System.out.println("CNFE catche girdi");
             return new ArrayList<>();
         }
     }
@@ -23,8 +21,6 @@ public class DaoImp <T>  {
     public <B> boolean saveData(List<B> list,String fileName) {
         try(ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File(fileName)))) {
             o.writeObject(list);
-//            System.out.println(list);
-//            System.out.println(fileName);
             return true;
         } catch (IOException e) {
             System.out.println("File not found in data");

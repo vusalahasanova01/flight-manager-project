@@ -11,6 +11,7 @@ public class LoginMenu {
     private final CancelBooking cancelBooking = new CancelBooking();
     private final AllTimetable allTimeTable = new AllTimetable();
     private final MyFlights myFlights = new MyFlights();
+    private final SearchAndBooking searchAndBooking = new SearchAndBooking();
 
     public void loginMenu() {
         boolean result = true;
@@ -25,6 +26,7 @@ public class LoginMenu {
                     myFlights.showUserBooking();
                     break;
                 case "3":
+                    searchAndBooking.SearchAndBookFlight();
                     break;
                 case "4":
                      cancelBooking.cancelBooking();
