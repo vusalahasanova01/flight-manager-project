@@ -24,7 +24,7 @@ public class FlightService {
         return flightDao.getAll();
     }
 
-    public Optional<Flight> getById(int index) {
+    public Optional<Flight> getById(int index) throws CheckFlightException{
         Optional<Flight> flight = flightDao.getById(index);
         if (flight.isPresent()) {
             return flight;

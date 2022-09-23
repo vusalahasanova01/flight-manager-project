@@ -1,5 +1,6 @@
 package controller;
 
+import exception.CheckFlightException;
 import model.Airline;
 import model.Airport;
 import model.Booking;
@@ -18,7 +19,7 @@ public class FlightController {
         return flightService.getAll();
     }
 
-    public Optional<Flight> getId(int index) {
+    public Optional<Flight> getById(int index) throws CheckFlightException {
         return flightService.getById(index);
     }
 
