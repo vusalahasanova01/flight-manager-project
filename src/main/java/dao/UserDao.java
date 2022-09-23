@@ -1,5 +1,6 @@
 package dao;
 
+import model.Flight;
 import model.User;
 
 import java.io.FileInputStream;
@@ -11,29 +12,11 @@ import java.util.Optional;
 
 public class UserDao implements Dao<User> {
     private final DaoImp<User> user = new DaoImp<>();
-//    private final String filePath = "C:\\WorkSpace\\flightProject\\src\\main\\java\\file\\User.bin";
     private final String filePath = "src/main/java/file/User.bin";
 
     @Override
     public List<User> getAll() {
         return user.getAll(filePath);
-//        FileInputStream fis;
-//        try {
-//             fis = new FileInputStream(filePath);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-        /*try (ObjectInputStream o = new ObjectInputStream(new FileInputStream(filePath))) {
-//            System.out.println("trydayam");
-            return (List<User>) o.readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
-//            System.out.println("IOE catche girdi");
-            return new ArrayList<>();
-        } catch (ClassNotFoundException ex) {
-//            System.out.println("CNFE catche girdi");
-            return new ArrayList<>();
-        }*/
     }
 
     @Override
@@ -62,30 +45,25 @@ public class UserDao implements Dao<User> {
 
     @Override
     public boolean addData(int id, User value) {
-//        System.out.println(value);
-        if (getById(id).isEmpty()) {
-            List<User> userList = user.getAll(filePath);
-//            System.out.println(userList);
-            userList.add(value);
-            user.saveData(userList, filePath);
-//            System.out.println(user.getAll(filePath));
-            return true;
-        } else {
+        List<User> userList = getAll();
+        if(getById(id).isPresent()){
             return false;
         }
+        userList.add(value);
+        saveData(userList);
+        return true;
     }
 
     @Override
     public boolean delete(int index) {
-        if (getById(index).isEmpty()) {
+        Optional<User> userOptional = getById(index);
+        if (userOptional.isEmpty()) {
             return false;
         } else {
             List<User> userList = user.getAll(filePath);
-            userList.remove(index);
+            userList.remove(userOptional.get());
             user.saveData(userList, filePath);
             return true;
         }
     }
-
-
 }

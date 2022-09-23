@@ -25,12 +25,13 @@ public class FlightDao implements Dao <Flight> {
 
     @Override
     public boolean delete(int index) {
-      if(getById(index).isEmpty()){
+        Optional<Flight> flightOptional = getById(index);
+        if(flightOptional.isEmpty()){
           return false;
       }
       else{
           List <Flight> flightList = flightDaoImp.getAll(filePath);
-          flightList.remove(index);
+          flightList.remove(flightOptional.get());
           flightDaoImp.saveData(flightList,filePath);
           return true;
       }
@@ -58,14 +59,12 @@ public class FlightDao implements Dao <Flight> {
 
     @Override
     public boolean addData(int id, Flight value) {
-        if(getById(id).isEmpty()){
-            List <Flight> flightList = new ArrayList<>();
-            flightList.add(value);
-            flightDaoImp.saveData(flightList,filePath);
-            return true;
-        }
-        else {
+        List<Flight> flightList = getAll();
+        if(getById(id).isPresent()){
             return false;
         }
+        flightList.add(value);
+        saveData(flightList);
+        return true;
     }
 }

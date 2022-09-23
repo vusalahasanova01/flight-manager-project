@@ -52,6 +52,9 @@ public class SearchAndBooking {
 
     private void bookFlight() {
         int flightId = Util.callResultInt("Enter flight id: ");
+        if (flightController.getById(flightId).isEmpty()){
+
+        }
         for (int i = 0; i < numberOfTicket; i++) {
             System.out.println(i + " passenger: ");
             String name = Util.callResultSt("Enter name of passenger: ");

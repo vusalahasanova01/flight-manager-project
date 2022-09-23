@@ -3,12 +3,9 @@ package controller;
 import exception.CheckFlightException;
 import model.Airline;
 import model.Airport;
-import model.Booking;
 import model.Flight;
 import service.FlightService;
 
-import java.text.ParseException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 

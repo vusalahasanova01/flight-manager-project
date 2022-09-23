@@ -5,7 +5,6 @@ import exception.CheckFlightException;
 import model.Booking;
 import util.Util;
 
-import java.lang.reflect.UndeclaredThrowableException;
 import java.util.Optional;
 
 public class CancelBooking {
@@ -14,11 +13,9 @@ public class CancelBooking {
         try {
             booking.getAll().forEach(b -> System.out.println(b.toString()));
             int cancelId = Util.callResultInt("Enter id which you want to cancel:");
-            Optional<Booking> bookingId = booking.getId(cancelId);
+            Optional<Booking> bookingId = booking.getById(cancelId);
             if (bookingId.isPresent()) {
-                int index = booking.getAll().indexOf(bookingId.get());
-
-                if (booking.cancelBooking(index)) {
+                if (booking.cancelBooking(cancelId)) {
                     System.out.println("You cancel ticket succcessfully");
                 } else {
                     System.out.println("Your ticket not canceled");
@@ -29,7 +26,7 @@ public class CancelBooking {
             }
         }
         catch(CheckFlightException f){
-            System.out.println("There is no  ticket with this  id");
+            System.out.println("There is no ticket with this id");
         }
 
     }

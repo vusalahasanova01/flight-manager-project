@@ -9,14 +9,12 @@ import model.Airport;
 public class Main {
 
     public static void main(String[] args) {
+//       FlightController flightController = new FlightController();
+//       flightController.addFlight(Airport.ISTANBUL,Airport.BAKU, Airline.AZAL,"2022-09-23 02:06",
+//               "2022-09-23 10:06",30);
        System.out.println(new UserController().getAll());
        System.out.println(new BookingController().getAll());
        System.out.println(new FlightController().getAll());
-       FlightController flightController = new FlightController();
-
-
-       flightController.addFlight(Airport.ISTANBUL,Airport.BAKU, Airline.AZAL,"2022-09-23 02:06",
-               "2022-09-23 10:06",30);
         BookingManager.start();
     }
 }

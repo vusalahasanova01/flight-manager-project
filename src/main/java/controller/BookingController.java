@@ -1,5 +1,6 @@
 package controller;
 
+import exception.CheckFlightException;
 import model.Booking;
 import model.Passenger;
 import service.BookingService;
@@ -12,13 +13,13 @@ public class BookingController {
     public List <Booking> getAll(){
         return bookingService.getAll();
     }
-    public Optional<Booking> getId(int index){
+    public Optional<Booking> getById(int index){
         return  bookingService.getById(index);
     }
     public boolean delete(int index){
         return bookingService.delete(index);
     }
-    public boolean cancelBooking(int id){
+    public boolean cancelBooking(int id) throws CheckFlightException {
        return  bookingService.cancelFlight(id);
     }
     public List <Booking> getUserBooking(int id){
