@@ -1,8 +1,13 @@
 package model;
 import bookingManage.BookingManager;
+import controller.FlightController;
+import controller.UserController;
+import exception.CheckFlightException;
 import util.Id;
+
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Booking implements Serializable {
     private  int id;
@@ -49,6 +54,31 @@ public class Booking implements Serializable {
 
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
+    }
+
+    public String prettyFormat(){
+        UserController userControlller = new UserController();
+        FlightController flightController = new FlightController();
+        Optional<User> user = userControlller.getById(userId);
+        Optional<Flight> flight;
+        try {
+            flight = flightController.getById(selectedFlightId);
+        }
+        catch (CheckFlightException f){
+            return "there is no flight with this id";
+        }
+        return String.format("|%-4.4s| %-14.14s| %-30.30s| %s ",
+                this.id,
+                user.isPresent() ? user.get().getUsername() : "-",
+                passenger.getFullName(),
+                flight.isPresent() ? flight.get().prettyFormat() : "-");
+
+
+
+
+
+
+
     }
 
     @Override

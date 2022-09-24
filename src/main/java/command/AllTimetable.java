@@ -8,7 +8,7 @@ public class AllTimetable {
 
     public void AllTimetable() {
             flightController.getTimeTableFLights()
-                    .forEach(f -> System.out.println(f.toString()));
+                    .forEach(f -> System.out.println(f.prettyFormat()));
     }
 
 }

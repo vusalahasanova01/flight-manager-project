@@ -4,6 +4,8 @@ import command.Register;
 import model.Airport;
 import ui.Menu;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -29,6 +31,9 @@ public class Util {
         System.out.println("Select number from menu: ");
         return sc.nextLine();
 
+    }
+    public static String editTime(LocalDateTime localDateTime){
+       return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
 

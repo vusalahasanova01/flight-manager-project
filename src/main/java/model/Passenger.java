@@ -12,7 +12,9 @@ public class Passenger implements Serializable {
         this.name = name;
         this.surname = surname;
     }
-
+    public  String getFullName(){
+        return name + " " + surname;
+    }
     public String getName() {
         return name;
     }

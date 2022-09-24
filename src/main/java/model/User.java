@@ -59,7 +59,13 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    public String prettyFormat(){
+        return String.format("|%-4.4s| %-16.16s| %-12.12s| %-14.14s",
+                id,
+                username,
+                name,
+                surname);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

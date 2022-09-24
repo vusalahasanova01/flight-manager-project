@@ -2,6 +2,7 @@ package command;
 
 import controller.BookingController;
 import controller.FlightController;
+import exception.CheckFlightException;
 import model.Booking;
 import model.Flight;
 import model.Passenger;
@@ -34,7 +35,7 @@ public class SearchAndBooking {
     }
 
     private void displayFlight() {
-        searchFlight().forEach(f -> System.out.println(f.toString()));
+        searchFlight().forEach(f -> System.out.println(f.prettyFormat()));
     }
 
     private void askAnswer() {
@@ -51,15 +52,21 @@ public class SearchAndBooking {
     }
 
     private void bookFlight() {
-        int flightId = Util.callResultInt("Enter flight id: ");
-        if (flightController.getById(flightId).isEmpty()){
+        try {
+            int flightId = Util.callResultInt("Enter flight id: ");
+            if (flightController.getById(flightId).isEmpty()) {
 
+            }
+            for (int i = 0; i < numberOfTicket; i++) {
+                System.out.println(i + " passenger: ");
+                String name = Util.callResultSt("Enter name of passenger: ");
+                String surname = Util.callResultSt("Enter suname of passenger :");
+                booking.addTicket(new Passenger(name, surname), flightId);
+            }
         }
-        for (int i = 0; i < numberOfTicket; i++) {
-            System.out.println(i + " passenger: ");
-            String name = Util.callResultSt("Enter name of passenger: ");
-            String surname = Util.callResultSt("Enter suname of passenger :");
-            booking.addTicket(new Passenger(name, surname), flightId);
+        catch (CheckFlightException f){
+            System.out.println("there is no flight with this id. Try again. ");
+            bookFlight();
         }
     }
 

@@ -11,7 +11,7 @@ public class CancelBooking {
     private final BookingController booking =  new BookingController();
     public void cancelBooking(){
         try {
-            booking.getAll().forEach(b -> System.out.println(b.toString()));
+            booking.getAll().forEach(b -> System.out.println(b.prettyFormat()));
             int cancelId = Util.callResultInt("Enter id which you want to cancel:");
             Optional<Booking> bookingId = booking.getById(cancelId);
             if (bookingId.isPresent()) {

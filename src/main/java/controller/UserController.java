@@ -15,7 +15,7 @@ public class UserController {
         return userService.getAll();
     }
 
-    public Optional<User> getId(int index) {
+    public Optional<User> getById(int index) {
         return userService.getById(index);
     }
 

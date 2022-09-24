@@ -1,6 +1,7 @@
 package model;
 
 import util.Id;
+import util.Util;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -98,6 +99,16 @@ public class Flight implements Serializable {
     public void decrementFreeSeats(){
         freeSeats--;
 
+    }
+    public String prettyFormat(){
+        return String.format("|%-4.4s| %14.14s ->  %-14.14s| %-20.20s| %20.20s -> %-20.20s| %-4.4s ",
+                id,
+                whereFrom.name(),
+                whereTo.name(),
+                airline.name(),
+                Util.editTime(timeForBegin),
+                Util.editTime(timeForFinish),
+                freeSeats);
     }
 
     @Override
