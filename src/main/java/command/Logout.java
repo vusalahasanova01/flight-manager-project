@@ -5,8 +5,8 @@ import controller.UserController;
 public class Logout {
     UserController userCont = new UserController();
 
-    public void logout() {
+    public boolean logout() {
         System.out.println("Exit from login menu.");
-        userCont.logout();
+        return userCont.logout();
     }
 }

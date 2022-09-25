@@ -40,8 +40,9 @@ public class UserService {
         }
     }
 
-    public void logout() {
+    public boolean logout() {
         BookingManager.logout();
+        return false;
     }
 
     public boolean exit() {

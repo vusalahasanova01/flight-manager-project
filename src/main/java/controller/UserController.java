@@ -27,8 +27,8 @@ public class UserController {
         return userService.loginCheck(username, password);
     }
 
-    public void logout() {
-        userService.logout();
+    public boolean logout() {
+        return userService.logout();
     }
 
     public boolean exit() {
