@@ -1,6 +1,6 @@
 package command;
 
-import bookingManage.BookingManager;
+import bookingManager.BookingManager;
 import controller.BookingController;
 
 public class MyFlights {

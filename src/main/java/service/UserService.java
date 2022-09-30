@@ -1,6 +1,6 @@
 package service;
 
-import bookingManage.BookingManager;
+import bookingManager.BookingManager;
 import dao.UserDao;
 import exception.CheckPasswordException;
 import exception.CheckUsernameException;
@@ -8,7 +8,6 @@ import model.User;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class UserService {
     UserDao userDao = new UserDao();
@@ -62,7 +61,7 @@ public class UserService {
         }
     }
 
-    public boolean checkUsername(String username) {
+    private boolean checkUsername(String username) {
         List<User> all = userDao.getAll();
         if (all == null) {
             return true;
@@ -71,7 +70,7 @@ public class UserService {
 
     }
 
-    public boolean checkPassword(String password) {
+    private boolean checkPassword(String password) {
         if (password.length() < 8) {
             return false;
         }

@@ -1,4 +1,4 @@
-import bookingManage.BookingManager;
+import bookingManager.BookingManager;
 import controller.BookingController;
 import controller.FlightController;
 import controller.UserController;

@@ -1,6 +1,4 @@
 package service;
-
-import controller.FlightController;
 import dao.BookingDao;
 import dao.FlightDao;
 import exception.CheckFlightException;
@@ -15,7 +13,6 @@ import java.util.stream.Collectors;
 public class BookingService {
     BookingDao bookingDao = new BookingDao();
     FlightDao flightDao =new FlightDao();
-   // FlightController flightController = new FlightController();
     public List <Booking>  getAll() {
        return bookingDao.getAll();
     }

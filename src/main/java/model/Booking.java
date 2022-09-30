@@ -1,5 +1,5 @@
 package model;
-import bookingManage.BookingManager;
+import bookingManager.BookingManager;
 import controller.FlightController;
 import controller.UserController;
 import exception.CheckFlightException;

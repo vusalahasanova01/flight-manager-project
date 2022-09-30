@@ -1,4 +1,4 @@
-package bookingManage;
+package bookingManager;
 
 import ui.LoginMenu;
 import ui.Menu;
