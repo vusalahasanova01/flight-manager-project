@@ -1,5 +1,6 @@
 package bookingManager;
 
+import command.RandomData;
 import ui.LoginMenu;
 import ui.Menu;
 
@@ -23,6 +24,7 @@ public class BookingManager {
     }
 
     public static void start() {
+        RandomData.randData();
         Menu menu = new Menu();
         menu.showMenu();
     }

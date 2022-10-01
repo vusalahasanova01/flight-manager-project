@@ -35,6 +35,18 @@ public class Flight implements Serializable {
         setTimeForFinish(timeForFinish);
         this.freeSeats = freeSeats;
     }
+    
+    public Flight
+            (Airport whereFrom, Airport whereTo, Airline airline, LocalDateTime timeForBegin,
+             LocalDateTime timeForFinish, int freeSeats) {
+        this.id = Id.getId(DBEnum.FLIGHT_ID).orElseThrow();
+        this.whereFrom = whereFrom;
+        this.whereTo = whereTo;
+        this.airline = airline;
+        this.timeForBegin = timeForBegin;
+        this.timeForFinish = timeForFinish;
+        this.freeSeats = freeSeats;
+    }
 
     public int getId() {
         return id;
