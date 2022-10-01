@@ -36,6 +36,7 @@ public class FlightServiceTest {
         List<Flight> flights = flightService.getAll();
         assertEquals(testFlight,flights.get(0));
     }
+
     @Test
     public void testGetById(){
         flightDao.addData(testFlight.getId(),testFlight);
@@ -64,6 +65,7 @@ public class FlightServiceTest {
         List<Flight> flightList = flightService.searchFlightByInform("ISTANBUL", "Baku", "24-09-2022 02:06", 30);
         assertEquals(flight.getId(),flightList.get(0).getId());
     }
+
     private Flight testAddFlight(Airport whereFrom, Airport whereto, Airline airline
             , String timeForBegin, String timeForFinish, int freeSeats){
         flightService.addFlight(whereFrom, whereto,airline,timeForBegin,
